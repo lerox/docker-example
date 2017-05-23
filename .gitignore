@@ -1,0 +1,4 @@
+/abc_service/vendor
+/composer.phar
+/abc_service/composer.phar
+/docker-compose.yml

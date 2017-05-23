@@ -1,0 +1,72 @@
+version: '3'
+
+services:
+    web:
+        image: nginx:latest
+        container_name: web
+        ports:
+            - "8080:80"
+        volumes:
+            - ./abc_service:/src
+            - ./site.conf:/etc/nginx/conf.d/docker-example.conf
+        networks:
+            - default_network_name
+
+    php:
+        build: ./php
+        container_name: php
+        volumes:
+            - ./abc_service:/src
+            - ./log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+        networks:
+            - default_network_name
+
+    redis:
+        image: "redis:latest"
+        container_name: redis
+        ports:
+            - "6379"
+        volumes:
+            - data-volume:/data
+        command: redis-server --appendonly yes
+        networks:
+            - default_network_name
+
+    rabbit:
+        image: rabbitmq:3-management
+        container_name: rabbit
+        hostname: my-rabbitmq
+        volumes:
+            - data-volume:/var/lib/rabbitmq/mnesia/rabbit@my-rabbitmq
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+        networks:
+            - default_network_name
+
+    elk:
+        build: ./elk
+        container_name: elk
+        ports:
+            - "5601:5601"
+            - "9200:9200"
+            - "5044:5044"
+        volumes:
+            - ./data-volume:/var/lib/elasticsearch
+            - ./elk/logstash.conf:/etc/logstash/conf.d/30-output.conf
+        environment:
+            ES_JAVA_OPTS: -Xms512m -Xmx512m
+            KIBANA_START: 1
+            LOGSTASH_START: 1
+            ELASTICSEARCH_START: 1
+        networks:
+            - default_network_name
+
+volumes:
+    data-volume:
+        external:
+            name: actual-name-of-volume
+
+networks:
+    default_network_name:
+        driver: bridge

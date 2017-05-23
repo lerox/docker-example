@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {"Lerox\\DockerExample\\": "src/"}
+  },
+  "minimum-stability": "dev",
+  "require": {
+    "predis/predis": "^2.0@dev",
+    "php-amqplib/php-amqplib": "^2.7@dev"
+  }
+}
