@@ -48,6 +48,6 @@ $ ./env.sh
 
 http://docker-example.dev:8080/ *Will run a set up check
 
-http://docker-example.dev:15672/#/queues
+http://docker-example.dev:15672/#/queues *guest guest to login
 
-http://docker-example.dev:5601/app/kibana
+http://docker-example.dev:5601/app/kibana#/discover?_g=() *Time-field name: @timestamp
