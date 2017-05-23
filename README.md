@@ -4,6 +4,12 @@ A functional docker example.
 
 ## Set up
 
+```
+$ cd ~/workingspace/
+$ git clone git@github.com:lerox/docker-example.git
+$ cd docker-example/
+```
+
 ```bash
 # /etc/hosts
 # ...
