@@ -17,7 +17,7 @@ services:
         container_name: php
         volumes:
             - ./abc_service:/src
-            - ./log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+            - ./php/log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
         networks:
             - default_network_name
 
