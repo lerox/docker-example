@@ -2,4 +2,4 @@
 
 FROM sebp/elk
 
-RUN usermod -u 1000 elasticsearch
+RUN usermod -u 991 elasticsearch
