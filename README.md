@@ -4,7 +4,7 @@ A functional docker example.
 
 ## Set up
 
-```
+```bash
 $ cd ~/workingspace/
 $ git clone git@github.com:lerox/docker-example.git
 $ cd docker-example/
@@ -42,6 +42,17 @@ boot2docker@vbox-test:~$ sudo sysctl -w vm.max_map_count=262144
 ```bash
 # And then:
 $ ./env.sh
+```
+
+## Logs
+
+```bash
+$ docker-compose logs elk
+$ docker-compose logs php
+$ docker-compose logs postgresql
+$ docker-compose logs rabbitmq
+$ docker-compose logs redis
+$ docker-compose logs web
 ```
 
 ## Endpoints:

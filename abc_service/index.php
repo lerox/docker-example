@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Just 4 debug
+ * Script just 4 debug
  */
 
 require __DIR__.'/vendor/autoload.php';
@@ -9,6 +9,34 @@ require __DIR__.'/vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 use Predis\Client;
+
+/**
+ * DB
+ */
+
+try {
+    $pdo = new \PDO("pgsql:host=postgres dbname=db_example user=docker password=docker");
+    $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
+    $statement = $pdo->prepare('SELECT * FROM example');
+    $statement->execute();
+    $result = $statement->fetchAll();
+
+    var_dump($result);
+    echo '<br>';
+
+    $statement = $pdo->prepare('INSERT INTO example (name) VALUES (\'test\');');
+    $statement->execute();
+    $result = $statement->fetchAll();
+
+    var_dump('DB test success');
+    echo '<br>';
+} catch (\PDOException  $e) {
+    var_dump('DB exception');
+    echo '<br>';
+    var_dump($e->getMessage());
+    echo '<br>';
+}
 
 /**
  * REDIS
