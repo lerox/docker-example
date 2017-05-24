@@ -52,13 +52,29 @@ services:
             - "9200:9200"
             - "5044:5044"
         volumes:
-            - ./data-volume:/var/lib/elasticsearch
+            - data-volume:/var/lib/elasticsearch
             - ./elk/logstash.conf:/etc/logstash/conf.d/30-output.conf
         environment:
             ES_JAVA_OPTS: -Xms512m -Xmx512m
             KIBANA_START: 1
             LOGSTASH_START: 1
             ELASTICSEARCH_START: 1
+        networks:
+            - default_network_name
+
+    postgres:
+        image: postgres:latest
+        container_name: postgres
+        volumes:
+            - ./postgres/dump-example.sql:/docker-entrypoint-initdb.d/init-db.sql
+            - data-volume:/var/lib/postgresql/data
+        environment:
+            POSTGRES_PASSWORD: docker
+            POSTGRES_USER: docker
+            POSTGRES_HOST: localhost
+            PGDATA: /var/lib/postgresql/data/db-files/
+        ports:
+            - "5432:5432"
         networks:
             - default_network_name
 

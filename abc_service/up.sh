@@ -1,3 +1,3 @@
 #!/bin/bash
-# teste.sh
+# up.sh
 composer install

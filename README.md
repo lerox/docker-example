@@ -1,6 +1,6 @@
 # docker-example
 
-A functional docker example.
+A functional docker example with: php7, nginx, postgres, elk, rabbitmq and redis.
 
 ## Set up
 
@@ -13,7 +13,7 @@ $ cd docker-example/
 ```bash
 # /etc/hosts
 # ...
-192.168.99.100  docker-example.dev # usually 127.0.0.1
+192.168.99.100  docker-example.local # usually 127.0.0.1
 # ...
 ```
 
@@ -41,7 +41,7 @@ boot2docker@vbox-test:~$ sudo sysctl -w vm.max_map_count=262144
 
 ```bash
 # And then:
-$ ./env.sh
+$ ./up.sh
 ```
 
 ## Logs
@@ -57,8 +57,8 @@ $ docker-compose logs web
 
 ## Endpoints:
 
-http://docker-example.dev:8080/ *Will run a set up check
+http://docker-example.local:8080/ *Will run a set up check
 
-http://docker-example.dev:15672/#/queues *guest guest to login
+http://docker-example.local:15672/#/queues *guest guest to login
 
-http://docker-example.dev:5601/app/kibana#/discover?_g=() *Time-field name: @timestamp
+http://docker-example.local:5601/app/kibana#/discover?_g=() *Time-field name: @timestamp
