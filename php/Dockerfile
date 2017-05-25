@@ -6,18 +6,14 @@ RUN apt-get update && apt-get install -y \
     curl \
     git \
     nano \
-    git \
     nmap \
     wget \
     telnet \
     vim
 
-# watch ?
-
 RUN docker-php-ext-install opcache
 RUN docker-php-ext-install bcmath
 
-# Install Postgre PDO
 RUN apt-get install -y libpq-dev \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install pdo pdo_pgsql pgsql
